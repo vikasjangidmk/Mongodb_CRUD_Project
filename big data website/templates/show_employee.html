@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Employee</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ42SMBkdq-vTKhbfpJ70IuOCB0ZSz7S__4S_jjNLSXhg&s');
+            /* Specify your background image */
+            background-size: 110%;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.6);
+            /* Transparent white background */
+            width: 20%;
+            /* Adjust the width as needed */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            /* Add shadow for depth */
+            text-align: center; /* Center align content */
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border-radius: 25px; /* Circular shape */
+            border: 2px solid #ccc; /* Added border */
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: rgba(0, 70, 7, 0.911);
+            /* Transparent black */
+            color: #fff;
+            border: none;
+            border-radius: 25px; /* Circular shape */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 18px;
+            text-decoration: none; /* Added */
+            line-height: 1; /* Added */
+            margin-right: 10px; /* Added margin between buttons */
+        }
+
+        .btn:last-child {
+            margin-right: 0; /* Remove margin for the last button */
+            width: 50%;
+            align-content: center;
+
+        }
+
+        .btn-container {
+            margin-top: 20px; /* Add space between buttons */
+            text-align: center; /* Center align content */
+        }
+
+        .btn-container a {
+            display: inline-block; /* Change display to inline-block */
+            margin-top: 10px; /* Add space between buttons */
+        }
+
+        .btn:hover {
+            background-color: rgba(0, 70, 7, 0.4);
+            /* Darken the button on hover */
+        }
+
+        /* Adjust button size for different screen sizes */
+        @media (max-width: 50px) {
+            .btn {
+                padding: 8px 16px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Show Employee</h1>
+        {% if error_message %}
+            <p style="color: red;">{{ error_message }}</p>
+        {% endif %}
+        <form action="{{ url_for('show_employee') }}" method="POST">
+            <label for="emp_id">Employee ID:</label><br>
+            <input type="text" id="emp_id" name="emp_id"><br>
+            <div class="btn-container">
+                <input type="submit" value="Show" class="btn">
+                <a class="btn" href="{{ url_for('home') }}">Go back to home page</a>
+            </div>
+        </form>
+        {% if employee %}
+            <p>Employee ID: {{ employee.emp_id }}</p>
+            <p>Name: {{ employee.name }}</p>
+            <p>Email: {{ employee.email }}</p>
+            <p>Designation: {{ employee.designation }}</p>
+            <p>City: {{ employee.city }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
